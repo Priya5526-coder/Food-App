@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Document</title>
+</head>
+<body>
+    <nav class="bg-orange-400 p-1">
+        <div class="flex justify-between p-2 text-white text-lg">
+            <a href="#" class="font-bold text-2xl">FoodApp</a>
+        <div class="space-x-6">
+            
+            <a href="{% url 'profile' %}">Welcome {{user.username}} !</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">logout</a>
+            {% else %}
+                <a href="{% url 'login' %}">login</a>
+            {% endif %}
+        </div>
+        </div>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="bg-green-500 text-green-700">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% block body %}
+    
+    {% endblock %}
+
+</body>
+</html>
